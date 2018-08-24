@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C3F8DD5A-B84F-48D9-80B0-AC6F0F22ED2C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ModernGod</RootNamespace>
+    <AssemblyName>ModernGod</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>Windows</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Camera.cs" />
+    <Compile Include="Characters\Character.cs" />
+    <Compile Include="Characters\CharacterManager.cs" />
+    <Compile Include="Characters\Pathfinding\HSPQ\FastPriorityQueue.cs" />
+    <Compile Include="Characters\Pathfinding\HSPQ\FastPriorityQueueNode.cs" />
+    <Compile Include="Characters\Pathfinding\HSPQ\GenericPriorityQueue.cs" />
+    <Compile Include="Characters\Pathfinding\HSPQ\GenericPriorityQueueNode.cs" />
+    <Compile Include="Characters\Pathfinding\HSPQ\IFixedSizePriorityQueue.cs" />
+    <Compile Include="Characters\Pathfinding\HSPQ\IPriorityQueue.cs" />
+    <Compile Include="Characters\Pathfinding\HSPQ\SimplePriorityQueue.cs" />
+    <Compile Include="Characters\Pathfinding\HSPQ\StablePriorityQueue.cs" />
+    <Compile Include="Characters\Pathfinding\HSPQ\StablePriorityQueueNode.cs" />
+    <Compile Include="Characters\Pathfinding\Pathing.cs" />
+    <Compile Include="Characters\Pathfinding\PathfindingResult.cs" />
+    <Compile Include="Characters\Pathfinding\PathingRequest.cs" />
+    <Compile Include="Characters\Pathfinding\PathManager.cs" />
+    <Compile Include="Characters\Pathfinding\PNode.cs" />
+    <Compile Include="Debugging\Debug.cs" />
+    <Compile Include="Input.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Textures\TextureAtlas.cs" />
+    <Compile Include="Time.cs" />
+    <Compile Include="Utils\BucketedQueue.cs" />
+    <Compile Include="Utils\IntLerpMode.cs" />
+    <Compile Include="Utils\MathUtils.cs" />
+    <Compile Include="Utils\Noise.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
+    <Compile Include="Utils\Vector2Int.cs" />
+    <Compile Include="World\Building.cs" />
+    <Compile Include="World\BuildingManager.cs" />
+    <Compile Include="World\BuildingType.cs" />
+    <Compile Include="World\Map.cs" />
+    <Compile Include="World\MapGen.cs" />
+    <Compile Include="World\MapInteraction.cs" />
+    <Compile Include="World\Terrain.cs" />
+    <Compile Include="World\TerrainTile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Characters\Pathfinding\HSPQ\LICENSE.txt" />
+    <Content Include="Characters\Pathfinding\HSPQ\_Notice.txt" />
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
