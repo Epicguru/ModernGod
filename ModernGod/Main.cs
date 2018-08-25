@@ -98,7 +98,7 @@ namespace ModernGod
             GraphicsDevice.SetRenderTarget(null);
             GraphicsDevice.Clear(Color.CornflowerBlue);
             Camera.UpdateMatrix(this.GraphicsDevice);
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera.GetMatrix());
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, null, Camera.GetMatrix());
 
             if(CurrentMap != null)
                 CurrentMap.Draw(spriteBatch);

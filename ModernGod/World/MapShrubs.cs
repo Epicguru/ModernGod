@@ -50,7 +50,7 @@ namespace ModernGod.World
                             var source = s.TextureBounds;
                             var dest = new Rectangle(x * 16, y * 16 - (source.Height - 16), source.Width, source.Height);
 
-                            spr.Draw(ShrubTexture, dest, source, colour);
+                            spr.Draw(ShrubTexture, dest, source, colour, 0f, Vector2.Zero, SpriteEffects.None, Map.GetDepth(y * 16, DepthBias.SHRUBBERY));
                         }
                     }
                 }

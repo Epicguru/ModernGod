@@ -21,6 +21,7 @@ namespace ModernGod.World
         public string Name { get; set; }
         public int Width { get; private set; }
         public int Height { get; private set; }
+        public float DepthBiasValue { get; private set; }
         public int Area
         {
             get
@@ -50,6 +51,24 @@ namespace ModernGod.World
             Width = width;
             Height = height;
             Name = name;
+            float tileDepthChange = 1f / Height;
+            DepthBiasValue = -tileDepthChange / 20f;
+        }
+
+        public float GetDepth(Rectangle destination, int bias = 0)
+        {
+            return GetDepth(destination.Y, bias);
+        }
+
+        public float GetDepth(int y, int bias = 0)
+        {
+            return GetDepth((float)y, bias);
+        }
+
+        public float GetDepth(float y, int bias = 0)
+        {
+            float bottom = Height * 16f;
+            return MathUtils.Clamp01((bottom - y) / bottom) + DepthBiasValue * bias;
         }
 
         Stopwatch watch = new Stopwatch();

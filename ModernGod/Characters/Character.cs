@@ -205,7 +205,7 @@ namespace ModernGod.Characters
             var effect = GetDrawEffect(Direction);
 
             Rectangle source = new Rectangle(si * 16, 0, 16, 16);
-            spr.Draw(CharacterTexture, Bounds, source, Colour, 0f, Vector2.Zero, effect, 0f);
+            spr.Draw(CharacterTexture, Bounds, source, Colour, 0f, Vector2.Zero, effect, Manager.Map.GetDepth(Bounds, DepthBias.CHARACTER));
         }
 
         public override string ToString()

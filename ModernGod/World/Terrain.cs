@@ -254,8 +254,8 @@ namespace ModernGod.World
         }
 
         public void Draw(SpriteBatch spr)
-        {          
-            spr.Draw(RT, Vector2.Zero, Color.White);
+        {
+            spr.Draw(RT, RT.Bounds, RT.Bounds, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 1f);
         }
 
         public void Dispose()

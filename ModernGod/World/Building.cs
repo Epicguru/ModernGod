@@ -173,7 +173,7 @@ namespace ModernGod.World
                     var source = GetSource(lx, ly, tex);
                     var dest = new Rectangle(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
-                    spr.Draw(Manager.BuildingsTexture, dest, source, Color.White);
+                    spr.Draw(Manager.BuildingsTexture, dest, source, Color.White, 0f, Vector2.Zero, SpriteEffects.None, Manager.Map.GetDepth(dest, DepthBias.BUILDING));
                     ly++;
                 }
                 lx++;

@@ -109,6 +109,7 @@
     <Compile Include="World\Building.cs" />
     <Compile Include="World\BuildingManager.cs" />
     <Compile Include="World\BuildingType.cs" />
+    <Compile Include="World\DepthBias.cs" />
     <Compile Include="World\Map.cs" />
     <Compile Include="World\MapGen.cs" />
     <Compile Include="World\MapInteraction.cs" />
