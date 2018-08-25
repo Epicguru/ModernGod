@@ -113,7 +113,7 @@
     <Compile Include="World\MapGen.cs" />
     <Compile Include="World\MapInteraction.cs" />
     <Compile Include="World\MapShrubs.cs" />
-    <Compile Include="World\Shrubs\CustomShrubAttribute.cs" />
+    <Compile Include="World\Shrubs\Instances\Grass.cs" />
     <Compile Include="World\Shrubs\Shrub.cs" />
     <Compile Include="World\Terrain.cs" />
     <Compile Include="World\TerrainTile.cs" />

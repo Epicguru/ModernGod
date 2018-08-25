@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace ModernGod.World.Shrubs
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
-    public class CustomShrubAttribute : Attribute
+    public class Grass : Shrub
     {
+        public Grass()
+        {
 
+        }
     }
 }

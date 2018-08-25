@@ -8,16 +8,32 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModernGod.World.Shrubs
+namespace ModernGod.World
 {
-    public class Shrub
+    public abstract class Shrub
     {
         public static Dictionary<byte, Shrub> Loaded = new Dictionary<byte, Shrub>();
+        
+        public byte ID;
+        public string Name;
+        public Color DefaultColour = Color.White;
+        
+        /// <summary>
+        /// Called every frame for every drawn shrub of this type.
+        /// It is the colour that it will be rendered in.
+        /// </summary>
+        /// <returns>The Color to render the placed shrub in.</returns>
+        public virtual Color GetColour(int x, int y, Map map)
+        {
+            return DefaultColour;
+        }
+
         public static void LoadShrubs()
         {
-            // Load all Shrubs with the custom shrub attribute, within the current (calling) assembly.
+            // Load all Shrubs subclasses, within the current (calling) assembly.
+
             var a = Assembly.GetCallingAssembly();
-            var classes = AttributeHelper.GetTypesWithHelpAttribute(a, typeof(CustomShrubAttribute));
+            var classes = AttributeHelper.GetTypeSubclasses(a, typeof(Shrub));
 
             Debug.Log("Loading custom shrubs from assembly '{0}'...".Form(a.GetName().Name), ConsoleColor.Cyan);
 
@@ -25,10 +41,10 @@ namespace ModernGod.World.Shrubs
             {
                 foreach (var c in t.GetConstructors())
                 {
-                    if(c.GetParameters().Length == 0)
+                    if (c.GetParameters().Length == 0)
                     {
                         var instance = (c.Invoke(new object[] { }));
-                        if(instance is Shrub)
+                        if (instance is Shrub)
                         {
                             Shrub s = instance as Shrub;
                             if (!Loaded.ContainsKey(s.ID))
@@ -54,23 +70,10 @@ namespace ModernGod.World.Shrubs
                 continue;
             }
         }
+
         public static void UnloadShrubs()
         {
             Loaded.Clear();
-        }
-
-        public byte ID;
-        public string Name;
-        public Color DefaultColour = Color.White;
-        
-        /// <summary>
-        /// Called every frame for every drawn shrub of this type.
-        /// It is the colour that it will be rendered in.
-        /// </summary>
-        /// <returns>The Color to render the placed shrub in.</returns>
-        public virtual Color GetColour(int x, int y, Map map)
-        {
-            return DefaultColour;
         }
 
         public static bool IsLoaded(byte id)

@@ -29,5 +29,24 @@ namespace ModernGod.Utils
                 }
             }
         }
+
+        public static IEnumerable<Type> GetTypeSubclasses(Type baseClass)
+        {
+            return GetTypeSubclasses(Assembly.GetCallingAssembly(), baseClass);
+        }
+
+        public static IEnumerable<Type> GetTypeSubclasses(Assembly assembly, Type baseClass)
+        {
+            if (baseClass == null)
+                yield break;
+
+            foreach (Type type in assembly.GetTypes())
+            {
+                if (type.IsSubclassOf(baseClass) && type != baseClass)
+                {
+                    yield return type;
+                }
+            }
+        }
     }
 }
