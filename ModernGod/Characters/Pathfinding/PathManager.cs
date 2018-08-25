@@ -72,7 +72,7 @@ namespace ModernGod.Characters.Pathfinding
         private void Run(object objNum)
         {
             int number = (int)objNum;
-            Debug.Log("Starting pathfinding thread numer " + number, ConsoleColor.Green);
+            Console.WriteLine("Starting pathfinding thread numer " + number);
 
             Pathing p = pathers[number];
 

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ModernGod.Debugging;
 using ModernGod.Textures;
+using ModernGod.Utils;
 using ModernGod.World;
 using System;
 using System.Threading;
@@ -21,6 +22,7 @@ namespace ModernGod
             }
         }
         public static readonly Camera Camera = new Camera();
+        public static SystemInfo SystemInfo;
 
         public TextureAtlas<byte> TerrainAtlas;
         public static SpriteFont DefaultUIFont;
@@ -41,6 +43,10 @@ namespace ModernGod
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            // Collect some system info. All anonymous and never leaves the process.
+            SystemInfo = new SystemInfo();
+            SystemInfo.Collect();
 
             CurrentMap = new Map("Jamesville", 100, 100);
             IsMouseVisible = true;
