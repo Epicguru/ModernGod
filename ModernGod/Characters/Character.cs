@@ -90,6 +90,7 @@ namespace ModernGod.Characters
         private const float LONG_SIDE = 1.414213562373095f;
 
         private List<PNode> path;
+        static Random r = new Random();
 
         public Character(string name, Vector2Int position, CharacterManager manager)
         {
@@ -100,16 +101,12 @@ namespace ModernGod.Characters
             Manager.Register(this);
 
             var map = manager.Map;
-            map.Pathing.MakeRequest(new PathingRequest(position.X, position.Y, map.Width - 1, map.Height - 1, UponPathCompleted));
+            map.Pathing.MakeRequest(new PathingRequest(position.X, position.Y, r.Next(map.Width), r.Next(map.Height), UponPathCompleted));
         }
 
         private void UponPathCompleted(PathfindingResult result, List<PNode> path)
         {
-            if(result != PathfindingResult.SUCCESSFUL)
-            {
-                Debug.LogError(result);
-            }
-            else
+            if(result == PathfindingResult.SUCCESSFUL)
             {
                 this.path = path;
             }

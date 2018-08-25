@@ -37,6 +37,7 @@ namespace ModernGod.World
         public CharacterManager Characters;
         public MapInteraction Interaction;
         public PathManager Pathing;
+        public MapShrubs Shrubs;
 
         public Map(string name, int width, int height)
         {
@@ -63,10 +64,11 @@ namespace ModernGod.World
             Characters = new CharacterManager(this);
             Interaction = new MapInteraction(this);
             Pathing = new PathManager(4, this);
+            Shrubs = new MapShrubs(this);
 
             Terrain.Init();
             Buildings.Init();
-            Shrub.LoadShrubs();
+            Shrubs.Init();
             Generation.Generate();
             Pathing.Start();
             Characters.Init();
@@ -125,6 +127,7 @@ namespace ModernGod.World
             Terrain.Draw(spr);
             Characters.Draw(spr);
             Buildings.Draw(spr);
+            Shrubs.Draw(spr);
         }
 
         public void Dispose()
@@ -135,7 +138,7 @@ namespace ModernGod.World
             Terrain.Dispose();
             Buildings.Dispose();
             Pathing.Dispose();
-            Shrub.UnloadShrubs();
+            Shrubs.Dispose();
         }
     }
 }

@@ -59,10 +59,6 @@ namespace ModernGod.World
                     if (b.Filled[internalIndex])
                     {
                         bool good = filledIndices.Add(index);
-                        if (!good)
-                        {
-                            Debug.LogError("Looks like a building was built on top of another one!");
-                        }
                     }                    
                 }
             }

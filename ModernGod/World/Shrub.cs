@@ -13,11 +13,24 @@ namespace ModernGod.World
     public abstract class Shrub
     {
         public static Dictionary<byte, Shrub> Loaded = new Dictionary<byte, Shrub>();
+        public static byte HighestID { get; private set; }
         
-        public byte ID;
-        public string Name;
+        public byte ID { get; private set; }
+        public string Name { get; private set; }
         public Color DefaultColour = Color.White;
+        public Rectangle TextureBounds = new Rectangle(0, 0, 0, 0);
         
+        public Shrub(byte ID, string name)
+        {
+            this.ID = ID;
+            this.Name = name;
+        }
+
+        public void SetTexture(int x, int y, int width, int height)
+        {
+            TextureBounds = new Rectangle(x * 16, y * 16, width * 16, height * 16);
+        }
+
         /// <summary>
         /// Called every frame for every drawn shrub of this type.
         /// It is the colour that it will be rendered in.
@@ -39,41 +52,39 @@ namespace ModernGod.World
 
             foreach (var t in classes)
             {
+                bool found = false;
                 foreach (var c in t.GetConstructors())
                 {
                     if (c.GetParameters().Length == 0)
                     {
+                        found = true;
                         var instance = (c.Invoke(new object[] { }));
-                        if (instance is Shrub)
+
+                        Shrub s = instance as Shrub;
+                        if (!Loaded.ContainsKey(s.ID))
                         {
-                            Shrub s = instance as Shrub;
-                            if (!Loaded.ContainsKey(s.ID))
-                            {
-                                Loaded.Add(s.ID, s);
-                                Debug.Log("  >" + s.ID + " '" + s.Name + "'");
-                                continue;
-                            }
-                            else
-                            {
-                                Debug.LogError("There is already a shrub registered for ID {0}! '{1}' tried to register with the same ID as '{2}'".Form(s.ID, s.Name, Loaded[s.ID].Name));
-                                continue;
-                            }
+                            Loaded.Add(s.ID, s);
+                            if (HighestID < s.ID)
+                                HighestID = s.ID;
+                            Debug.Log("  > " + s.ID + " '" + s.Name + "'");
+                            break;
                         }
                         else
                         {
-                            Debug.LogError("Type '{0}' is not a subclass of Shrub, cannot have the CustomShrub attribute!".Form(t.FullName));
-                            continue;
+                            Debug.LogError("There is already a shrub registered for ID {0}! '{1}' tried to register with the same ID as '{2}'".Form(s.ID, s.Name, Loaded[s.ID].Name));
+                            break;
                         }
                     }
                 }
-                Debug.LogError("There is no zero-argument constructor for custom shrub '{0}'! It will not be registred!".Form(t.FullName));
-                continue;
+                if(!found)
+                    Debug.LogError("There is no zero-argument constructor for custom shrub '{0}'! It will not be registred!".Form(t.FullName));
             }
         }
 
         public static void UnloadShrubs()
         {
             Loaded.Clear();
+            HighestID = 0;
         }
 
         public static bool IsLoaded(byte id)
@@ -83,6 +94,10 @@ namespace ModernGod.World
 
         public static Shrub Get(byte id)
         {
+            // 0 is always null, nothing, empty.
+            if (id == 0)
+                return null;
+
             if (IsLoaded(id))
                 return Loaded[id];
             else

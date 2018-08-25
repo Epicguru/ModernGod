@@ -61,6 +61,7 @@ namespace ModernGod.Characters.Pathfinding
             {
                 Thread t = new Thread(Run);
                 threads[i] = t;
+                t.Name = "Pathfinding #" + i;
 
                 Pathing p = new Pathing();
                 pathers[i] = p;
