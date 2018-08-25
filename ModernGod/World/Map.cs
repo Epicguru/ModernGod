@@ -4,6 +4,7 @@ using ModernGod.Characters;
 using ModernGod.Characters.Pathfinding;
 using ModernGod.Pathfinding;
 using ModernGod.Utils;
+using ModernGod.World.Shrubs;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -65,6 +66,7 @@ namespace ModernGod.World
 
             Terrain.Init();
             Buildings.Init();
+            Shrub.LoadShrubs();
             Generation.Generate();
             Pathing.Start();
             Characters.Init();
@@ -133,6 +135,7 @@ namespace ModernGod.World
             Terrain.Dispose();
             Buildings.Dispose();
             Pathing.Dispose();
+            Shrub.UnloadShrubs();
         }
     }
 }

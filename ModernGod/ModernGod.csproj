@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="Camera.cs" />
     <Compile Include="Characters\Character.cs" />
+    <Compile Include="Characters\CharacterDirection.cs" />
     <Compile Include="Characters\CharacterManager.cs" />
     <Compile Include="Characters\Pathfinding\HSPQ\FastPriorityQueue.cs" />
     <Compile Include="Characters\Pathfinding\HSPQ\FastPriorityQueueNode.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Textures\TextureAtlas.cs" />
     <Compile Include="Time.cs" />
+    <Compile Include="Utils\AttributeHelper.cs" />
     <Compile Include="Utils\BucketedQueue.cs" />
     <Compile Include="Utils\IntLerpMode.cs" />
     <Compile Include="Utils\MathUtils.cs" />
@@ -110,6 +112,9 @@
     <Compile Include="World\Map.cs" />
     <Compile Include="World\MapGen.cs" />
     <Compile Include="World\MapInteraction.cs" />
+    <Compile Include="World\MapShrubs.cs" />
+    <Compile Include="World\Shrubs\CustomShrubAttribute.cs" />
+    <Compile Include="World\Shrubs\Shrub.cs" />
     <Compile Include="World\Terrain.cs" />
     <Compile Include="World\TerrainTile.cs" />
   </ItemGroup>

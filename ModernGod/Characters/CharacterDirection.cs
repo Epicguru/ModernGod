@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ModernGod.Characters
 {
-    class CharacterDirection
+    public enum CharacterDirection : byte
     {
+        RIGHT = 0,
+        LEFT = 1,
+        TOWARDS_CAM = 2,
+        AWAY_CAM = 3
     }
 }

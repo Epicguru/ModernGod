@@ -21,6 +21,11 @@ namespace ModernGod.Textures
             this.Texture = texture;
         }
 
+        public bool AddSprite(T id, int x, int y, int sizeX, int sizeY, int multi = 1)
+        {
+            return AddSprite(id, new Rectangle(x * multi, y * multi, sizeX * multi, sizeY * multi));
+        }
+
         public bool AddGridSprites(T[] ids, int columns, int rows, int width, int height)
         {
             // Index of names is:

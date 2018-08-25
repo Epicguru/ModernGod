@@ -19,6 +19,7 @@ namespace ModernGod.Characters
         public static int Completed;
 
         public CharacterManager Manager { get; private set; }
+        public CharacterDirection Direction { get; set; }
 
         public string Name
         {
@@ -82,7 +83,7 @@ namespace ModernGod.Characters
             }
         }
 
-        public Color Colour = Color.BlueViolet;
+        public Color Colour = Color.Bisque;
         public bool IsDestroyed { get; private set; }
 
         private float moveProgress;
@@ -163,10 +164,51 @@ namespace ModernGod.Characters
             }
         }
 
+        public SpriteEffects GetDrawEffect(CharacterDirection direction)
+        {
+            switch (direction)
+            {
+                case CharacterDirection.RIGHT:
+                    return SpriteEffects.None;
+
+                case CharacterDirection.LEFT:
+                    return SpriteEffects.FlipHorizontally;
+
+                case CharacterDirection.TOWARDS_CAM:
+                    return SpriteEffects.None;
+
+                case CharacterDirection.AWAY_CAM:
+                    return SpriteEffects.None;
+
+                default:
+                    return SpriteEffects.None;
+            }
+        }
+
+        public int GetSourceIndex(CharacterDirection direction)
+        {
+            switch (direction)
+            {
+                case CharacterDirection.RIGHT:
+                    return 0;
+                case CharacterDirection.LEFT:
+                    return 0;
+                case CharacterDirection.TOWARDS_CAM:
+                    return 2;
+                case CharacterDirection.AWAY_CAM:
+                    return 1;
+                default:
+                    return 0;
+            }
+        }
+
         public void Draw(SpriteBatch spr)
         {
-            Rectangle source = CharacterTexture.Bounds;
-            spr.Draw(CharacterTexture, Bounds, source, Colour, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+            int si = GetSourceIndex(Direction);
+            var effect = GetDrawEffect(Direction);
+
+            Rectangle source = new Rectangle(si * 16, 0, 16, 16);
+            spr.Draw(CharacterTexture, Bounds, source, Colour, 0f, Vector2.Zero, effect, 0f);
         }
 
         public override string ToString()
