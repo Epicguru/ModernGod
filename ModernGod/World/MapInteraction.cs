@@ -19,6 +19,10 @@ namespace ModernGod.World
 
         public bool IsTileWalkable_Unsafe(int x, int y)
         {
+            // Check for solid shrubbery.
+            if (Map.Shrubs.GetShrubID(x, y) != 0)
+                return false;
+
             // Check buildings...
             if (Map.Buildings.TileHasBuilding(x, y))
                 return false;

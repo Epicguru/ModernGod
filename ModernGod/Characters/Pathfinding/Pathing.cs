@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace ModernGod.Pathfinding
 {
-    public class Pathing
+    public class Pathing : IDisposable
     {
         public const int MAX = 1024;
         public const float DIAGONAL_DST = 1.41421356237f;
@@ -261,6 +261,15 @@ namespace ModernGod.Pathfinding
             }
 
             return near;
+        }
+
+        public void Dispose()
+        {
+            Clear();
+            costSoFar = null;
+            cameFrom = null;
+            near = null;
+            open = null;
         }
     }
 }

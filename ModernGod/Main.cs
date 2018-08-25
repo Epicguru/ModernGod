@@ -48,7 +48,7 @@ namespace ModernGod
             SystemInfo = new SystemInfo();
             SystemInfo.Collect();
 
-            CurrentMap = new Map("Jamesville", 100, 100);
+            CurrentMap = new Map("Jamesville", 200, 200);
             IsMouseVisible = true;
 
             base.Initialize();
@@ -79,7 +79,7 @@ namespace ModernGod
             {
                 Camera.Zoom = 1f - (Math.Abs(state) * 0.0005f);
             }
-            Camera.Position = new Vector2(50 * 16);
+            Camera.Position = new Vector2(100 * 16);
 
             if(CurrentMap != null)
                 CurrentMap.Update();

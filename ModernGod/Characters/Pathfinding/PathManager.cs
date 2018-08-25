@@ -125,7 +125,12 @@ namespace ModernGod.Characters.Pathfinding
                 Shutdown();
             }
 
-            // Dispose here.
+            // Dispose...
+            threads = null;
+            for (int i = 0; i < ThreadCount; i++)
+            {
+                pathers[i].Dispose();
+            }
         }
     }
 }
