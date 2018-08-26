@@ -30,7 +30,7 @@ namespace ModernGod.World
             open.Enqueue(center + new Vector2Int(0, 1));
             open.Enqueue(center + new Vector2Int(0, -1));
 
-            const int STOPPING_CHANCE = 20;
+            const int STOPPING_CHANCE = 40;
             const int BRANCH_CHANCE = 17;
 
             while (open.Count > 0)

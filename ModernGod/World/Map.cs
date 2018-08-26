@@ -95,13 +95,11 @@ namespace ModernGod.World
             Initialized = true;
 
             watch.Start();
-            for (int j = 0; j < 5; j++)
+            for (int i = 0; i < 100; i++)
             {
-                for (int i = 0; i < 100; i++)
-                {
-                    Characters.CreateCharacter(new Vector2Int(i), "John");
-                }
-            }                     
+                Characters.CreateCharacter(new Vector2Int(i), "John");
+            }
+                               
         }
 
         public bool InBounds(int x, int y)
@@ -122,10 +120,10 @@ namespace ModernGod.World
             Buildings.Update();
             Characters.Update();
 
-            if(Character.Completed == 500 && watch.IsRunning)
+            if(Character.Completed == 100 && watch.IsRunning)
             {
                 watch.Stop();
-                Debugging.Debug.Log("Took " + watch.Elapsed.TotalSeconds + " for 500 paths.", ConsoleColor.Green);
+                Debugging.Debug.Log("Took " + watch.Elapsed.TotalSeconds + " for 100 paths.", ConsoleColor.Green);
             }
         }
 

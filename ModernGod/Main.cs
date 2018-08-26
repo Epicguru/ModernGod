@@ -37,7 +37,7 @@ namespace ModernGod
             instance = this;
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            base.Window.AllowUserResizing = true;
+            base.Window.AllowUserResizing = true;       
         }
 
         protected override void Initialize()
@@ -86,6 +86,24 @@ namespace ModernGod
 
             base.Update(gameTime);
             Time.UpdateEnded();
+
+            var size = Window.ClientBounds.Size;
+            bool apply = false;
+            if(size.X != Graphics.PreferredBackBufferWidth)
+            {
+                Graphics.PreferredBackBufferWidth = size.X;
+                apply = true;
+            }
+            if(size.Y != Graphics.PreferredBackBufferHeight)
+            {
+                Graphics.PreferredBackBufferHeight = size.Y;
+                apply = true;
+            }
+            if (apply)
+            {
+                Debug.Log("Resized to " + Graphics.PreferredBackBufferWidth + "x" + Graphics.PreferredBackBufferHeight);
+                Graphics.ApplyChanges();
+            }
         }
 
         protected override void Draw(GameTime gameTime)
