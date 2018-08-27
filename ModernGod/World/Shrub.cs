@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using ModernGod.Debugging;
+using ModernGod.Logging;
 using ModernGod.Utils;
 using System;
 using System.Collections.Generic;
@@ -48,7 +48,7 @@ namespace ModernGod.World
             var a = Assembly.GetCallingAssembly();
             var classes = AttributeHelper.GetTypeSubclasses(a, typeof(Shrub));
 
-            Debug.Log("Loading custom shrubs from assembly '{0}'...".Form(a.GetName().Name), ConsoleColor.Cyan);
+            Logger.Log("Loading custom shrubs from assembly '{0}'...".Form(a.GetName().Name), ConsoleColor.Cyan);
 
             foreach (var t in classes)
             {
@@ -66,18 +66,18 @@ namespace ModernGod.World
                             Loaded.Add(s.ID, s);
                             if (HighestID < s.ID)
                                 HighestID = s.ID;
-                            Debug.Log("  > " + s.ID + " '" + s.Name + "'");
+                            Logger.Log("  > " + s.ID + " '" + s.Name + "'");
                             break;
                         }
                         else
                         {
-                            Debug.LogError("There is already a shrub registered for ID {0}! '{1}' tried to register with the same ID as '{2}'".Form(s.ID, s.Name, Loaded[s.ID].Name));
+                            Logger.LogError("There is already a shrub registered for ID {0}! '{1}' tried to register with the same ID as '{2}'".Form(s.ID, s.Name, Loaded[s.ID].Name));
                             break;
                         }
                     }
                 }
                 if(!found)
-                    Debug.LogError("There is no zero-argument constructor for custom shrub '{0}'! It will not be registred!".Form(t.FullName));
+                    Logger.LogError("There is no zero-argument constructor for custom shrub '{0}'! It will not be registred!".Form(t.FullName));
             }
         }
 

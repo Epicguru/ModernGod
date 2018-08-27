@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ModernGod.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,12 @@ namespace ModernGod.World
             byte lastID = 0;
             Shrub s = null;
 
-            for (int x = 0; x < width; x++)
+            var bounds = Map.TileDrawBounds;
+            Logger.Log(bounds.X + ", " + bounds.Right);
+
+            for (int x = bounds.X; x < bounds.Right; x++)
             {
-                for (int y = 0; y < height; y++)
+                for (int y = bounds.Y; y < bounds.Bottom; y++)
                 {
                     int index = x + y * width;
                     byte id = IDs[index];

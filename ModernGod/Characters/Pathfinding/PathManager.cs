@@ -1,4 +1,4 @@
-﻿using ModernGod.Debugging;
+﻿using ModernGod.Logging;
 using ModernGod.Pathfinding;
 using ModernGod.Utils;
 using ModernGod.World;

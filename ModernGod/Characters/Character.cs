@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ModernGod.Characters.Pathfinding;
-using ModernGod.Debugging;
+using ModernGod.Logging;
 using ModernGod.Pathfinding;
 using ModernGod.Utils;
 using ModernGod.World;
@@ -59,7 +59,7 @@ namespace ModernGod.Characters
                 }
                 else
                 {
-                    Debug.LogError("Cannot set character position to " + value + ", it is not adjacent to the last position. Use Teleport instead.");
+                    Logger.LogError("Cannot set character position to " + value + ", it is not adjacent to the last position. Use Teleport instead.");
                 }
             }
         }

@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using ModernGod.Debugging;
+using ModernGod.Logging;
 using ModernGod.Textures;
 using ModernGod.Utils;
 using ModernGod.World;
@@ -37,7 +37,8 @@ namespace ModernGod
             instance = this;
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            base.Window.AllowUserResizing = true;       
+            base.Window.AllowUserResizing = true;
+            Graphics.SynchronizeWithVerticalRetrace = false;
         }
 
         protected override void Initialize()
@@ -48,7 +49,7 @@ namespace ModernGod
             SystemInfo = new SystemInfo();
             SystemInfo.Collect();
 
-            CurrentMap = new Map("Jamesville", 200, 200);
+            CurrentMap = new Map("Jamesville", 400, 400);
             IsMouseVisible = true;
 
             base.Initialize();
@@ -79,7 +80,7 @@ namespace ModernGod
             {
                 Camera.Zoom = 1f - (Math.Abs(state) * 0.0005f);
             }
-            Camera.Position = new Vector2(100 * 16);
+            Camera.Position = new Vector2(200 * 16);
 
             if(CurrentMap != null)
                 CurrentMap.Update();
@@ -101,7 +102,7 @@ namespace ModernGod
             }
             if (apply)
             {
-                Debug.Log("Resized to " + Graphics.PreferredBackBufferWidth + "x" + Graphics.PreferredBackBufferHeight);
+                Logger.Log("Resized to " + Graphics.PreferredBackBufferWidth + "x" + Graphics.PreferredBackBufferHeight);
                 Graphics.ApplyChanges();
             }
         }
@@ -125,7 +126,7 @@ namespace ModernGod
 
             // Draw UI.
             spriteBatch.Begin();
-            Debug.DrawStats(spriteBatch, gameTime);
+            Logger.DrawStats(spriteBatch, gameTime);
             spriteBatch.End();
 
             base.Draw(gameTime);

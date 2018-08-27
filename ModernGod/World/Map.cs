@@ -32,6 +32,9 @@ namespace ModernGod.World
 
         public bool Initialized { get; private set; }
 
+        public Rectangle TileDrawBounds { get; private set; }
+        public int TileDrawBoundsExpansion { get; set; } = 3;
+
         public Terrain Terrain;
         public BuildingManager Buildings;
         public MapGen Generation;
@@ -77,7 +80,7 @@ namespace ModernGod.World
             if (Initialized)
                 return;
 
-            Terrain = new Terrain(this);
+            Terrain = new Terrain(this, 2, 2);
             Buildings = new BuildingManager(this);
             Generation = new MapGen(this);
             Characters = new CharacterManager(this);
@@ -123,7 +126,7 @@ namespace ModernGod.World
             if(Character.Completed == 100 && watch.IsRunning)
             {
                 watch.Stop();
-                Debugging.Debug.Log("Took " + watch.Elapsed.TotalSeconds + " for 100 paths.", ConsoleColor.Green);
+                Logging.Logger.Log("Took " + watch.Elapsed.TotalSeconds + " for 100 paths.", ConsoleColor.Green);
             }
         }
 
@@ -141,10 +144,28 @@ namespace ModernGod.World
             if (!Initialized)
                 return;
 
+            // Calculate tile drawing bounds.
+            SetTileDrawBounds();
+
             Terrain.Draw(spr);
             Characters.Draw(spr);
             Buildings.Draw(spr);
             Shrubs.Draw(spr);
+        }
+
+        private void SetTileDrawBounds()
+        {
+            int ex = TileDrawBoundsExpansion;
+
+            var r = TileDrawBounds;
+            r.X = MathHelper.Clamp(Main.Camera.WorldViewBounds.X / Terrain.TILE_SIZE - ex, 0, Width - 1);
+            r.Y = MathHelper.Clamp(Main.Camera.WorldViewBounds.Y / Terrain.TILE_SIZE - ex, 0, Height - 1);
+            int maxWidth = Width - r.X;
+            int maxHeight = Height - r.Y;
+            r.Width = MathHelper.Clamp((int)Math.Ceiling((float)Main.Camera.WorldViewBounds.Width / Terrain.TILE_SIZE) + ex * 2, 0, maxWidth);
+            r.Height = MathHelper.Clamp((int)Math.Ceiling((float)Main.Camera.WorldViewBounds.Height / Terrain.TILE_SIZE) + ex * 2, 0, maxHeight);
+
+            TileDrawBounds = r;
         }
 
         public void Dispose()

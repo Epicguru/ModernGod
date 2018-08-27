@@ -33,12 +33,12 @@ namespace ModernGod.Utils
 
         public override bool Equals(object obj)
         {
-            if(obj is Vector2Int)
+            if (obj is Vector2Int)
             {
                 var other = (Vector2Int)obj;
                 return this.X == other.X && this.Y == other.Y;
             }
-            else if(obj is Vector2)
+            else if (obj is Vector2)
             {
                 var other = (Vector2)obj;
                 return this.X == other.X && this.Y == other.Y;
@@ -114,7 +114,7 @@ namespace ModernGod.Utils
         public static implicit operator Vector2(Vector2Int vector)
         {
             return new Vector2(vector.X, vector.Y);
-        }
+        }                 
 
         public static float Distance(Vector2Int a, Vector2Int b)
         {
@@ -124,7 +124,7 @@ namespace ModernGod.Utils
         public static float SquareDistance(Vector2Int a, Vector2Int b)
         {
             return (b.X - a.X) * (b.X - a.X) + (b.Y - a.Y) * (b.Y - a.Y);
-        }
+        }        
 
         public static Vector2Int Lerp(Vector2Int a, Vector2Int b, float p, IntLerpMode mode = IntLerpMode.DEFAULT)
         {

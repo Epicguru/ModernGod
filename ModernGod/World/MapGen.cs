@@ -160,7 +160,7 @@ namespace ModernGod.World
 
             foreach (var pair in closed)
             {
-                Map.Terrain.SetTerrainTile(pair.Value.X, pair.Value.Y, TerrainTile.Dirt);
+                Map.Terrain.SetTerrainTile(pair.Value.X, pair.Value.Y, TerrainTile.Dirt, false);
             }
         }
 

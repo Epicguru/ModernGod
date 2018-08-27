@@ -48,13 +48,13 @@ namespace ModernGod.Utils
             }
             catch (Exception e)
             {
-                Debugging.Debug.LogError("Failed collecting some or all system info...");
-                Debugging.Debug.LogError(e);
+                Logging.Logger.LogError("Failed collecting some or all system info...");
+                Logging.Logger.LogError(e);
             }
             finally
             {
                 watch.Stop();
-                Debugging.Debug.Log("Finished collecting system info in " + watch.Elapsed.TotalSeconds + " seconds.");
+                Logging.Logger.Log("Finished collecting system info in " + watch.Elapsed.TotalSeconds + " seconds.");
 
                 Print("Processor Count", ProcessorCount);
                 Print("Is 64 Process", IsRunning64);
@@ -65,7 +65,7 @@ namespace ModernGod.Utils
 
         private void Print(string key, object value)
         {
-            Debugging.Debug.Log("  >" + key + ": " + value, ConsoleColor.DarkCyan);
+            Logging.Logger.Log("  >" + key + ": " + value, ConsoleColor.DarkCyan);
         }
     }
 }

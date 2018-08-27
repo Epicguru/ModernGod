@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,6 @@ namespace ModernGod.Utils
         public static float LerpUnclamped(float a, float b, float p)
         {
             return a + (b - a) * p;
-        }
+        }        
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ModernGod.Debugging;
+using ModernGod.Logging;
 using ModernGod.Textures;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace ModernGod.World
         public void Init()
         {
             BuildingsTexture = Main.ContentMangager.Load<Texture2D>("Textures/Buildings");
-            Debug.Log(BuildingsTexture);
+            Logger.Log(BuildingsTexture);
 
             Random r = new Random();
             int cx = Map.Width / 2;

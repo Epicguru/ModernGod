@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ModernGod.Debugging
+namespace ModernGod.Logging
 {
-    public static class Debug
+    public static class Logger
     {
         public const int FPS_COUNTER_SMOOTHING = 10;
         private static Queue<float> ups = new Queue<float>();
@@ -65,10 +65,9 @@ namespace ModernGod.Debugging
             {
                 "UPS: " + Math.Round(ups.Average()),
                 "FPS: " + Math.Round(fps.Average()),
-                "Terrain Tile: " + (!tt ? "None" : tile),
-                "Terrain Mem: " + Main.CurrentMap.Terrain.ArrayMemoryUsage + " (no texture)",
                 "Character Count: " + Main.CurrentMap.Characters.CharacterCount,
-                "Total " + Main.CurrentMap.Pathing.TotalPendingRequests
+                "Pending Path Requests: " + Main.CurrentMap.Pathing.TotalPendingRequests,
+                "Culled Tile Area: " + Main.CurrentMap.TileDrawBounds.Width * Main.CurrentMap.TileDrawBounds.Height
             };
 
             Vector2 drawPos = new Vector2(5, 5);

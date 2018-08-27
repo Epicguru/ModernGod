@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ModernGod.Debugging;
+using ModernGod.Logging;
 using ModernGod.Utils;
 using System;
 using System.Collections.Generic;
@@ -36,19 +36,19 @@ namespace ModernGod.Textures
 
             if (columns == 0 || rows == 0)
             {
-                Debug.LogError("Did not add any grid sprites to this atlas, row or column count was 0!");
+                Logger.LogError("Did not add any grid sprites to this atlas, row or column count was 0!");
                 return false;
             }
 
             if(ids == null || ids.Length == 0)
             {
-                Debug.LogError("Names array is null or empty, no grid sprites were added!");
+                Logger.LogError("Names array is null or empty, no grid sprites were added!");
                 return false;
             }
 
             if(ids.Length != rows * columns)
             {
-                Debug.LogError("Incorrect number of names to add grid sprites, there are {0} supplied names but there should be {1}".Form(ids.Length, rows * columns));
+                Logger.LogError("Incorrect number of names to add grid sprites, there are {0} supplied names but there should be {1}".Form(ids.Length, rows * columns));
                 return false;
             }
 
@@ -76,7 +76,7 @@ namespace ModernGod.Textures
         {
             if (map.ContainsKey(id))
             {
-                Debug.LogError("Cannot add '{0}' to this texture atlas, there is already a sprite for that ID!".Form(id));
+                Logger.LogError("Cannot add '{0}' to this texture atlas, there is already a sprite for that ID!".Form(id));
                 return false;
             }
 

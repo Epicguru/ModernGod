@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ModernGod.Debugging;
+using ModernGod.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -155,10 +155,10 @@ namespace ModernGod.World
         {
             int lx = 0;
             int ly = 0;
-            for (int x = Bounds.X; x < Bounds.X + Bounds.Width; x++)
+            for (int x = MathHelper.Max(Bounds.X, Manager.Map.TileDrawBounds.X); x < MathHelper.Min(Bounds.Right, Manager.Map.TileDrawBounds.Right); x++)
             {
                 ly = 0;
-                for (int y = Bounds.Y; y < Bounds.Y + Bounds.Height; y++)
+                for (int y = MathHelper.Max(Bounds.Y, Manager.Map.TileDrawBounds.Y); y < MathHelper.Min(Bounds.Bottom, Manager.Map.TileDrawBounds.Bottom); y++)
                 {
                     // TODO work out which one to draw
 
